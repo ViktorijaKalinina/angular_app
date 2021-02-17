@@ -8,11 +8,18 @@ import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { appReducer } from './_store';
+import { ProductsFormComponent } from './products-form/products-form.component';
+import { ProductsFormModule } from './products-form/products-form.module';
+import { EffectsModule } from '@ngrx/effects';
+import { NgrxFormsModule } from 'ngrx-forms';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,11 @@ import { appReducer } from './_store';
         strictActionTypeUniqueness: true
       }
     }),
-    !environment.production ? StoreDevtoolsModule.instrument():[]
+    !environment.production ? StoreDevtoolsModule.instrument():[],
+    EffectsModule.forRoot([]),
+    RouterModule.forRoot(routes),
+    NgrxFormsModule,
+    ProductsFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

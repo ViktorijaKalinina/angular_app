@@ -1,7 +1,15 @@
-<input type="text" [(ngModel)]="newItemTitle"/>
-<button (click)="addNewItem()">Add item</button>
+<div class="form-inline">
+  <div class="form-group">
+    <label>
+      Title:
+      <input type="text" [(ngModel)]="newItemTitle"/>
+    </label>
+  </div>
+  <button (click)="addNewItem()" class="btn btn-primary">Add</button>
+</div>
 
 <div *ngIf="(products$ | async).length > 0">
+  <p>Items list</p>
   <p *ngFor="let product of products$ | async">
       {{product.title}}
   </p>

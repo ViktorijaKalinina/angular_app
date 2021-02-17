@@ -1,0 +1,34 @@
+<div class="flex">
+  <div>
+    <div *ngIf="(products$ | async).length > 0">
+      <p>Items list:</p>
+      <p *ngFor="let product of products$ | async">
+          {{product.title}}
+          <button (click)="editProduct(product.id)" class="btn-option">Edit</button>
+          <button (click)="deleteProduct(product.id)" class="btn-option">Delete</button>
+      </p>
+    </div>
+    <button (click)="addNewItem()" class="btn btn-primary">Add item</button>
+  </div>
+  <div *ngIf="formState$ | async as formState" [formState]="formState">
+    <form [ngrxFormState]="formState" *ngIf="(isFormDisplayed$ | async)">
+      <div class="form-inline">
+        <div class="form-group">
+          <p>Add/Edit Form:</p>
+          <label>Title:
+            <input [ngrxFormControlState]="formState.controls.title"/>
+          </label>
+        </div>
+      </div>
+      <button (click)="saveProduct()" *ngIf="displaySave" class="btn btn-primary">
+        Save
+      </button>
+      <button (click)="updateProduct()" *ngIf="displayUpdate" class="btn btn-primary">
+        Update
+      </button>
+      <button (click)="cancel()" class="btn">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

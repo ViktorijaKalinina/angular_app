@@ -1,1 +1,8 @@
-<app-products></app-products>
+<div class="flex">
+  <nav class="flex-column">
+    <a [routerLink]="['/addToStore']">Add item to store</a>
+    <a [routerLink]="['/ngrxCrud']">CRUD with ngrx forms</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
