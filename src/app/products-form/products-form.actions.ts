@@ -7,7 +7,7 @@ export const callAddProduct = createAction(
 
 export const addProductSuccess = createAction(
   '[ProductsForm] Add Products Success',
-  props<{result: string}>()
+  props<{result: Products}>()
 )
 
 export const callDeleteProduct = createAction(

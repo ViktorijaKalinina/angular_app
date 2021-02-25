@@ -18,17 +18,40 @@
           <label>Title:
             <input [ngrxFormControlState]="formState.controls.title"/>
           </label>
+          <label>Email:
+            <input [ngrxFormControlState]="formState.controls.email"/>
+          </label>
+          <label>Age:
+            <input [ngrxFormControlState]="formState.controls.age"/>
+          </label>
         </div>
       </div>
-      <button (click)="saveProduct()" *ngIf="displaySave" class="btn btn-primary">
+      <button (click)="saveProduct()" *ngIf="displaySave" class="btn btn-primary"
+        [disabled]="formState.isInvalid">
         Save
       </button>
-      <button (click)="updateProduct()" *ngIf="displayUpdate" class="btn btn-primary">
+      <button (click)="updateProduct()" *ngIf="displayUpdate" class="btn btn-primary"
+        [disabled]="formState.isInvalid">
         Update
       </button>
       <button (click)="cancel()" class="btn">
         Cancel
       </button>
     </form>
+
+    <ul *ngIf="formState.isInvalid && formState.isDirty">
+      <li *ngIf="formState.errors._title?.required">
+          Title is required
+      </li>
+      <li *ngIf="formState.errors._email?.required">
+        Email is required
+      </li>
+      <li *ngIf="formState.errors._age?.required">
+        Age is required
+      </li>
+      <li *ngIf="formState.errors._age?.greaterThan">
+        Age must be greater than 0
+      </li>
+    </ul>
   </div>
 </div>

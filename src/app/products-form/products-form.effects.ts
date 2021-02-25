@@ -14,7 +14,13 @@ export class ProductsFormEffects {
   public callAddProduct$ = createEffect(() => this.actions$.pipe(
     ofType(callAddProduct),
     withLatestFrom(this.store.select(getProductsForm)),
-    map(([props, product]) => addProductSuccess({result: product.controls.title.value}),
+    map(([props, product]) => {
+      const data: Products = {
+        title: product.controls.title.value,
+        age: product.controls.age.value,
+        email: product.controls.email.value
+      }
+      return addProductSuccess({result: data})},
     catchError(() => EMPTY)
     )
   ));
@@ -48,7 +54,7 @@ export class ProductsFormEffects {
     map(([props, product, itemsList]) => {
       const elementIndex = itemsList.findIndex(item => item.id === product.value.id);
       let newArray = [...itemsList];
-      newArray[elementIndex] = {...newArray[elementIndex], title: product.value.title}
+      newArray[elementIndex] = {...newArray[elementIndex], title: product.value.title, email: product.value.email, age: product.value.age}
 
       return updateProductSuccess({list: newArray})
     })
