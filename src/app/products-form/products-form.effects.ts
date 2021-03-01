@@ -18,7 +18,8 @@ export class ProductsFormEffects {
       const data: Products = {
         title: product.controls.title.value,
         age: product.controls.age.value,
-        email: product.controls.email.value
+        email: product.controls.email.value,
+        profession: product.controls.profession.value
       }
       return addProductSuccess({result: data})},
     catchError(() => EMPTY)

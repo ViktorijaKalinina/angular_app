@@ -24,6 +24,9 @@
           <label>Age:
             <input [ngrxFormControlState]="formState.controls.age"/>
           </label>
+          <label>Profession:
+            <input [ngrxFormControlState]="formState.controls.profession" placeholder="age > 18"/>
+          </label>
         </div>
       </div>
       <button (click)="saveProduct()" *ngIf="displaySave" class="btn btn-primary"
@@ -51,6 +54,9 @@
       </li>
       <li *ngIf="formState.errors._age?.greaterThan">
         Age must be greater than 0
+      </li>
+      <li *ngIf="formState.errors._profession?.pattern">
+        Proffesion must contain only letters
       </li>
     </ul>
   </div>
